@@ -3,7 +3,7 @@
     <ul>
         <li v-for="task in sortingTask()"
             :key="task.id"
-            :class="{completed: task.completed, editing: inputId===task.id }" >
+            :class="{completed: task.completed, editing: inputId===task.id }">
 
             <div class="row">
                 <div class="task col s3 card-panel teal lighten-4">

@@ -4,8 +4,8 @@
 
   <div class="row">
      
-    <div class="col s12">
-      <input class="card-panel teal lighten-2"
+  
+      <input class="col s12 card-panel teal lighten-2"
         v-model="newTask"
         @keyup.enter="addTask"
         autofocus
@@ -13,7 +13,6 @@
         placeholder="Введите задачу"
         value=""
       >
-    </div>
 
     <TaskList :tasks="tasks"
     :removeTask="removeTask"
@@ -36,23 +35,7 @@ export default {
   name: 'TaskManager',
   data() {
     return{
-      tasks: [
-        {
-        id: "1",
-        text: "Task 1",
-        completed: false
-        },
-         {
-        id: "2",
-        text: "Task 2",
-        completed: true
-        },
-        {
-        id: "3",
-        text: "Task 3",
-        completed: false
-        }
-      ],
+      tasks: [],
       newTask: "",
       inputId: null,
       beforeEditCache: null
@@ -104,6 +87,14 @@ export default {
         completed: false
       });
       this.newTask = "";
+    }
+  },
+  mounted() { 
+    this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  },
+  watch: {
+    tasks(tasks) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     }
   },
   components: {
